@@ -1,0 +1,24 @@
+---
+title: "CauldRon Master Mix Report"
+output: html_document
+params:
+  proj_id: NA
+  proj_num: NA
+  protocol: NA
+  samples: NA
+  all_mixes: !r list()
+---
+
+## Project: `r params$proj_id` (#`r params$proj_num`)
+**Protocol:** `r params$protocol`  
+**Base Sample Count:** `r params$samples`
+
+---
+
+```{r, echo=FALSE, results='asis'}
+# Loop through the list of dataframes and print each one
+for (mix_name in names(params$all_mixes)) {
+  cat("### ", mix_name, "\n")
+  print(knitr::kable(params$all_mixes[[mix_name]]))
+  cat("\n\n")
+}
